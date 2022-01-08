@@ -3,23 +3,11 @@ import numpy as np
 
 root=np.zeros((1000,1500,3),np.uint8)
 
-keys= [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
-
-def drawALL(root, keypad):
-    for button in keypad:
-        x,y= button.pos
-        w,h= button.size 
-        cv.rectangle(root, button.pos, (x+w, y+h), (255,255,255),2)
-        cv.putText(root, button.text, (x+20, y+50), cv.FONT_HERSHEY_PLAIN, 3, (255,255,255), 4)
-    return root
-    
-
-
 class Button():
     def  __init__(self, pos, text, size=[70,70]):
-        self.pos= pos
-        self.size= size
-        self.text= text
+        self.pos = pos
+        self.size = size
+        self.text = text
     
     def draw(self, root):
         x,y= self.pos
@@ -33,35 +21,29 @@ class Button():
             return True
         return False
         
-
-keypad= []
+# DEFINE ALL THE BUTTONS
+keypad=[]
 
 myreset=Button([5,285], "RESET", [200,70])
 mysolve=Button([5,375], "SOLVE", [200,70])
 myquit=Button([5,465], "QUIT", [200,70])
 
-for i in range(len(keys)):
-    for j, key in enumerate(keys[i]):
-        keypad.append(Button([70*j+5, 70*i+5], key))
+for x in range(1, 4):
+  for y in range(1, 4):
+    keypad.append(Button([70*y+5, 70*x+5], str(x+y)))
 
+#DRAW THE BUTTONS
+for btn in keypad:
+  btn.draw(root)
 
-while True:
-   
-    root= drawALL(root, keypad)
-    root=myreset.draw(root)
-    root=mysolve.draw(root)
-    root=myquit.draw(root)
-
-
-    cv.imshow("sudoku air", root)
-    cv.waitKey(1)
-    
-def drawGrid(): #Draw Sudoku Frame
-  pass
+myreset.draw(root)
+mysolve.draw(root)
+myquit.draw(root)
 
 run = True
 
 while run:
-  #DRAW
-  #CHECK USER INPUT
-  #CHANGE VARIOUS STATES
+    cv.imshow("sudoku air", root)
+
+    if cv.waitKey(20) & 0xFF==ord('d'):
+        break
