@@ -17,7 +17,7 @@ class Button():
         return root
         
     def ifClicked(self, xcor, ycor):
-        if((xcor>=self.x and xcor<=self.x+self.w) and (ycor>=self.y and ycor<=self.y+self.h)):
+        if((xcor>=self.pos.x and xcor<=self.pos.x+self.size.w) and (ycor>=self.pos.y and ycor<=self.pos.y+self.size.h)):
             return True
         return False
         
