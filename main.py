@@ -44,6 +44,9 @@ run = True
 
 while run:
     cv.imshow("sudoku air", root)
+    
+    if(myquit.ifClicked(xcor, ycor)):
+        run = False
 
     if cv.waitKey(20) & 0xFF==ord('d'):
         break
