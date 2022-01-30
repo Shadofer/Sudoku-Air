@@ -70,8 +70,8 @@ while run:
         unpickledpuzzles = pickler.unpickle()
         puzzle = random.randint(0, len(unpickledpuzzles)) #Put of a limit from 0-n, where there are n-1 grids pickled and stored
         sudokuGrid = unpickledpuzzles[puzzle]
-      row = (cor[0]//50)+1
-      col = (cor[0]//50)+1
+      row = (cor[0]//70)+1
+      col = (cor[0]//70)+1
       num = col*3 - (3-row)
       print(num)
 
